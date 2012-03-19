@@ -40,4 +40,7 @@
     define('LOCAL', true); // if true then site is hosted locally - don't use pam_auth etc. 
 
     define('TIMING', true);
+
+    define('API_KEY', 'd43bcdca90f82b5918d40c50ee20198e');
+    
 ?>
