@@ -143,7 +143,13 @@ if(isset($_POST['new-post']) && isloggedin()) {
                                 <div class="time span1">
                                     <?php echo date('H:i', $post->getTimestamp()); ?>
                                 </div>
-                                <div class="content span4"><?php echo $post->getContent(); ?></div>
+                                <div class="content span4">
+                                    <?php 
+                                        $meta = json_decode($post->getMeta()); 
+                                        echo $meta->tweetcontent->html;
+                                    ?>
+                                    <?php echo $post->getContent(); ?>
+                                </div>
                             </div>
                         </div>
                     <?php } ?>
