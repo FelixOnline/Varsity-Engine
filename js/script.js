@@ -2,11 +2,9 @@
 
 */
 $(function() {
-    $('textarea#content').tinymce({
-        // Location of TinyMCE script
-        script_url : 'js/tiny_mce/tiny_mce.js',
-
+    tinyMCE.init({
         // General options
+        mode : "textareas",
         theme : "simple",
         entity_encoding : "raw",
 

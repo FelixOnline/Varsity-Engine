@@ -163,7 +163,7 @@ if(isset($_POST['new-post']) && isloggedin()) {
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
 
     <!-- Load TinyMCE -->
-    <script type="text/javascript" src="js/tiny_mce/jquery.tinymce.js"></script>
+    <script type="text/javascript" src="js/tiny_mce/tiny_mce.js"></script>
     <!-- /TinyMCE -->
     <!-- scripts concatenated and minified via build script -->
     <script src="js/script.js"></script>
