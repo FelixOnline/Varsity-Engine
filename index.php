@@ -108,7 +108,7 @@ if(isset($_POST['new-post']) && isloggedin()) {
                     <p>Logged in as <?php echo $_SESSION['felix_varsity']['uname']; ?></p>
                 </div>
                 <div class="add-new">
-                    <form class="form-horizontal" method="post" action=""> 
+                    <form class="form-horizontal" method="post" action="index.php"> 
                         <fieldset>
                             <legend>Add new post</legend>
                             <div class="control-group">
