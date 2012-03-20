@@ -17,7 +17,10 @@
 
         switch($type) {
             case 'twitter':
-                $meta['tweetcontent'] = json_decode(getTweet($meta['tweeturl']));
+                $meta['tweetcontent'] = json_decode(getTweet($meta['tweetid']), true);
+                foreach($meta['tweetcontent'] as $key => $value) {
+                    $meta['tweetcontent'][$key] = mysql_real_escape_string($value);
+                }
                 break;
         }
 
@@ -60,9 +63,9 @@
         curl_close($ch);
     }
 
-    function getTweet($url) {
-        $api = 'https://api.twitter.com/1/statuses/oembed.json?id=99530515043983360';
-        $request = $api.'?url='.htmlentities($url).'&omit_script=true';
+    function getTweet($id) {
+        $api = 'https://api.twitter.com/1/statuses/oembed.json';
+        $request = $api.'?id='.$id.'';
 
         $ch = curl_init();
         $timeout = 5;
