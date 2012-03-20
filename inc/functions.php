@@ -38,24 +38,19 @@
         $db->query($sql);
 
         // post to nodejs
-        $url = "http://localhost:3000";
+        $url = "http://localhost:3000/newpost";
         $data = array(
             'api' => API_KEY,
             'new-post' => 1
         );
 
         $data_string = http_build_query($data);
-        //open connection
-        $ch = curl_init();
-        
-        //set the url, number of POST vars, POST data
-        curl_setopt($ch,CURLOPT_URL,$url);
-        curl_setopt($ch,CURLOPT_POST,count($data));
-        curl_setopt($ch,CURLOPT_POSTFIELDS,$data_string);
 
-        //execute post
+        $ch = curl_init($url.'?'.$data_string);
+
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+
         $result = curl_exec($ch);
-        
-        //close connection
         curl_close($ch);
     }
+

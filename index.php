@@ -58,7 +58,7 @@ if(isset($_POST['new-post']) && isloggedin()) {
         More info: h5bp.com/i/378 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title></title>
+    <title>Varsity</title>
     <meta name="description" content="">
 
     <!-- Mobile viewport optimized: h5bp.com/viewport -->
@@ -68,6 +68,7 @@ if(isset($_POST['new-post']) && isloggedin()) {
 
     <link rel="stylesheet/less" href="css/bootstrap.less">
     <link rel="stylesheet/less" href="css/responsive.less">
+    <link rel="stylesheet/less" href="css/style.less">
     <script src="js/libs/less-1.3.0.min.js"></script>
 
     <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
@@ -120,6 +121,8 @@ if(isset($_POST['new-post']) && isloggedin()) {
                                     </select>
                                 </div>
                             </div>
+                            
+                            <div id="meta"></div>
                             <div class="control-group">
                                 <label class="control-label" for="content">Content</label>
                                 <div class="controls">
@@ -137,10 +140,12 @@ if(isset($_POST['new-post']) && isloggedin()) {
                     <?php
                         foreach($blog->getPosts() as $key => $post) { ?>
                         <div class="post">
-                            <div class="time">
-                                <?php echo date('H:i', $post->getTimestamp()); ?>
+                            <div class="row">
+                                <div class="time span1">
+                                    <?php echo date('H:i', $post->getTimestamp()); ?>
+                                </div>
+                                <div class="content span4"><?php echo $post->getContent(); ?></div>
                             </div>
-                            <div class="content"><?php echo $post->getContent(); ?></div>
                         </div>
                     <?php } ?>
                 </div>
@@ -157,6 +162,9 @@ if(isset($_POST['new-post']) && isloggedin()) {
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
 
+    <!-- Load TinyMCE -->
+    <script type="text/javascript" src="js/tiny_mce/jquery.tinymce.js"></script>
+    <!-- /TinyMCE -->
     <!-- scripts concatenated and minified via build script -->
     <script src="js/script.js"></script>
     <!-- end scripts -->
