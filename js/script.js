@@ -13,13 +13,22 @@ $(function() {
     });
 
     var meta = {
-        normal: '',
-        twitter: '',
-        picture: ''
+        types: {
+            twitter: '<div class="control-group"><label class="control-label" for="twitteruser">Twitter User</label><div class="controls"><input type="text" name="twitteruser" id="twitteruser" class="input-large"/></div></div><div class="control-group"><label class="control-label" for="tweeturl">Tweet URL</label><div class="controls"><input type="text" name="tweeturl" id="tweeturl" class="input-large"/></div></div>',
+            picture: '<label class="control-label" for="picurl">Picture URL</label><div class="controls"><input type="text" name="picurl" id="picurl" class="input-large"/></div>',
+        },
+        metacont: $('#meta'),
+        addMeta: function(option) {
+            this.metacont.append(this.types[option]);
+        }
     }
 
     $('#type').change(function() {
-        console.log(this);
+        meta.metacont.empty();
+        var option = $(this).find('option:selected').val();
+        if(meta.types[option]) {
+            meta.addMeta(option);
+        }
     });
 });
 

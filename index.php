@@ -108,7 +108,7 @@ if(isset($_POST['new-post']) && isloggedin()) {
                     <p>Logged in as <?php echo $_SESSION['felix_varsity']['uname']; ?></p>
                 </div>
                 <div class="add-new">
-                    <form class="form-horizontal" method="post" action=""> 
+                    <form id="newpostform" class="form-horizontal" method="post" action=""> 
                         <fieldset>
                             <legend>Add new post</legend>
                             <div class="control-group">
@@ -117,7 +117,7 @@ if(isset($_POST['new-post']) && isloggedin()) {
                                     <select id="type" name="type">
                                         <option value="">Normal</option>
                                         <option value="twitter">Twitter</option>
-                                        <option value="pic">Picture</option>
+                                        <option value="picture">Picture</option>
                                     </select>
                                 </div>
                             </div>
