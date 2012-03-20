@@ -14,7 +14,7 @@ $(function() {
 
     var meta = {
         types: {
-            twitter: '<div class="control-group"><label class="control-label" for="twitteruser">Twitter User</label><div class="controls"><input type="text" name="twitteruser" id="twitteruser" class="input-large"/></div></div><div class="control-group"><label class="control-label" for="tweetid">Tweet ID</label><div class="controls"><input type="text" name="tweetid" id="tweetid" class="input-large"/></div></div>',
+            twitter: '<div class="control-group"><div class="control-group"><label class="control-label" for="tweetid">Tweet ID</label><div class="controls"><input type="text" name="tweetid" id="tweetid" class="input-large"/></div></div>',
             picture: '<label class="control-label" for="picurl">Picture URL</label><div class="controls"><input type="text" name="picurl" id="picurl" class="input-large"/></div>',
         },
         metacont: $('#meta'),
