@@ -64,8 +64,13 @@
     }
 
     function getTweet($id) {
+        $hashbang = '#!/';
+        $pos = strpos($id, $hashbang);
+        if($pos !== false) {
+            $id = str_replace("#!/", "", $id);
+        }
         $api = 'https://api.twitter.com/1/statuses/oembed.json';
-        $request = $api.'?id='.$id.'';
+        $request = $api.'?url='.$id.'';
 
         $ch = curl_init();
         $timeout = 5;
