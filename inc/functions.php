@@ -38,7 +38,7 @@
         $db->query($sql);
 
         // post to nodejs
-        $url = "http://localhost:3000/newpost";
+        $url = "http://176.34.227.200:3000/newpost";
         $data = array(
             'api' => API_KEY,
             'new-post' => 1
