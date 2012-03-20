@@ -15,6 +15,12 @@
     function publishpost($type, $content, $author, $meta, $blog) {
         global $db;
 
+        switch($type) {
+            case 'twitter':
+                $meta['tweetcontent'] = json_decode(getTweet($meta['tweeturl']));
+                break;
+        }
+
         // insert into database
         $sql = "INSERT INTO `blog_post`
                 (
@@ -54,3 +60,16 @@
         curl_close($ch);
     }
 
+    function getTweet($url) {
+        $api = 'https://api.twitter.com/1/statuses/oembed.json?id=99530515043983360';
+        $request = $api.'?url='.htmlentities($url).'&omit_script=true';
+
+        $ch = curl_init();
+        $timeout = 5;
+        curl_setopt($ch,CURLOPT_URL,$request);
+        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        return $result;
+    }
