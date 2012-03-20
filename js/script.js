@@ -8,6 +8,7 @@ $(function() {
 
         // General options
         theme : "simple",
+        entity_encoding : "raw",
 
         // Example content CSS (should be your site CSS)
         content_css : "css/style.css"

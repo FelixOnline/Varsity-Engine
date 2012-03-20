@@ -1,0 +1,35 @@
+header {
+  margin-top: 30px;
+}
+.feed {
+  margin-top: 20px;
+  min-height: 300px;
+}
+.feed.loading {
+  background: url('../img/ajax-loader.gif') center center no-repeat;
+}
+.feed h3 {
+  margin-bottom: 20px;
+}
+.feed .post {
+  padding: 0px 10px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #BEBEBE;
+}
+.feed .post p {
+  margin-top: 3px;
+  margin-bottom: 10px;
+}
+.feed .post .time {
+  font-size: 18px;
+  font-weight: bold;
+}
+.feed .post .content {
+  font-size: 16px;
+}
+.feed .post #twittericon {
+  height: 50px;
+  width: 50px;
+  background: url('../img/twitter_newbird_blue-50.png') center center no-repeat;
+}

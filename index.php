@@ -23,8 +23,8 @@ if (array_key_exists('login', $_POST)) {
 
 $blog = new Blog('varsity');
 
-if(isset($_GET['newpost']) && isloggedin()) {
-    foreach($_GET as $key => $value) {
+if(isset($_POST['new-post']) && isloggedin()) {
+    foreach($_POST as $key => $value) {
         switch($key) {
             case 'type':
                 $type = mysql_real_escape_string($value);
@@ -42,7 +42,6 @@ if(isset($_GET['newpost']) && isloggedin()) {
     $author = $_SESSION['felix_varsity']['uname'];
 
     publishpost($type, $content, $author, $meta, $blog);
-    header('Location: '.ADMIN_URL.'varsity/');
 }
 ?>
 <!doctype html>
@@ -109,7 +108,7 @@ if(isset($_GET['newpost']) && isloggedin()) {
                     <p>Logged in as <?php echo $_SESSION['felix_varsity']['uname']; ?></p>
                 </div>
                 <div class="add-new">
-                    <form class="form-horizontal" method="get" action=""> 
+                    <form class="form-horizontal" method="post" action=""> 
                         <fieldset>
                             <legend>Add new post</legend>
                             <div class="control-group">
@@ -131,7 +130,7 @@ if(isset($_GET['newpost']) && isloggedin()) {
                                 </div>
                             </div>
                             <div class="form-actions">
-                                <button type="submit" class="btn btn-primary" id="new-post" name="newpost">Submit</button>
+                                <button type="submit" class="btn btn-primary" id="new-post" name="new-post">Submit</button>
                             </div>
                         </fieldset>
                     </form>
