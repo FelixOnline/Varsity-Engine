@@ -47,7 +47,7 @@
         $db->query($sql);
 
         // post to nodejs
-        $url = "http://176.34.227.200:3000/newpost";
+        $url = NODE_URL."/newpost";
         $data = array(
             'api' => API_KEY,
             'new-post' => 1
@@ -80,4 +80,33 @@
         $result = curl_exec($ch);
         curl_close($ch);
         return $result;
+    }
+
+    function updateMatch($match, $meta, $finished) {
+        global $db;
+
+        $sql = "UPDATE `varsity`
+                SET 
+                    score1 = ".$meta['score1'].",
+                    score2 = ".$meta['score2'].",
+                    finished = ".$finished."
+                WHERE
+                    id = ".$match."";
+        $db->query($sql);
+        
+        // post to nodejs
+        $url = NODE_URL."/matchupdate";
+        $data = array(
+            'api' => API_KEY,
+            'matchupdate' => 1
+        );
+
+        $data_string = http_build_query($data);
+
+        $ch = curl_init($url.'?'.$data_string);
+
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+
+        $result = curl_exec($ch);
+        curl_close($ch);
     }
