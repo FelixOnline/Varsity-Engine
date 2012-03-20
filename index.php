@@ -86,7 +86,6 @@ if(isset($_POST['new-post']) && isloggedin()) {
             <?php if (!isloggedin()) { // not logged in? display login form ?>
                 <form method="post" id="loginForm" class="form-horizontal">
                     <legend>Please enter your username/password to continue</legend>
-                    <p>This information is only required to confirm that you have not yet completed this survey. It will <strong>not</strong> be tied to your response. See above for further details.</p>
                     <fieldset class="control-group">
                         <label class="control-label" for="uname">IC Username:</label>
                         <div class="controls">
