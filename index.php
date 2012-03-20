@@ -23,7 +23,7 @@ if (array_key_exists('login', $_POST)) {
 
 $blog = new Blog('varsity');
 
-if(isset($_GET['new-post']) && isloggedin()) {
+if(isset($_GET['newpost']) && isloggedin()) {
     foreach($_GET as $key => $value) {
         switch($key) {
             case 'type':
@@ -131,7 +131,7 @@ if(isset($_GET['new-post']) && isloggedin()) {
                                 </div>
                             </div>
                             <div class="form-actions">
-                                <button type="submit" class="btn btn-primary" id="new-post" name="new-post">Submit</button>
+                                <button type="submit" class="btn btn-primary" id="new-post" name="newpost">Submit</button>
                             </div>
                         </fieldset>
                     </form>
