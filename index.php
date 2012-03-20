@@ -23,8 +23,8 @@ if (array_key_exists('login', $_POST)) {
 
 $blog = new Blog('varsity');
 
-if(isset($_POST['new-post']) && isloggedin()) {
-    foreach($_POST as $key => $value) {
+if(isset($_GET['new-post']) && isloggedin()) {
+    foreach($_GET as $key => $value) {
         switch($key) {
             case 'type':
                 $type = mysql_real_escape_string($value);
@@ -42,6 +42,7 @@ if(isset($_POST['new-post']) && isloggedin()) {
     $author = $_SESSION['felix_varsity']['uname'];
 
     publishpost($type, $content, $author, $meta, $blog);
+    header('Location: '.ADMIN_URL.'varsity/');
 }
 ?>
 <!doctype html>
@@ -108,7 +109,7 @@ if(isset($_POST['new-post']) && isloggedin()) {
                     <p>Logged in as <?php echo $_SESSION['felix_varsity']['uname']; ?></p>
                 </div>
                 <div class="add-new">
-                    <form class="form-horizontal" method="post" action="index.php"> 
+                    <form class="form-horizontal" method="get" action=""> 
                         <fieldset>
                             <legend>Add new post</legend>
                             <div class="control-group">
