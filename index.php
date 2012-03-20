@@ -137,7 +137,7 @@ if(isset($_POST['new-post']) && isloggedin()) {
                 <div class="feed">
                     <h3>Feed</h3>
                     <?php
-                        foreach($blog->getPosts() as $key => $post) { ?>
+                        //foreach($blog->getPosts() as $key => $post) { ?>
                         <div class="post">
                             <div class="row">
                                 <div class="time span1">
@@ -152,7 +152,7 @@ if(isset($_POST['new-post']) && isloggedin()) {
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>
+                    <?php //} ?>
                 </div>
             <?php } ?>
         </div>
