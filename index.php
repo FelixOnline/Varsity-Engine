@@ -71,6 +71,15 @@ if(isset($_POST['update-match']) && isloggedin()) {
     updateMatch($match, $meta, $finished);
     publishpost($type, '', $author, $meta, $blog);
 }
+
+if(isset($_POST['sticky']) && isloggedin()) {
+    $sticky = mysql_real_escape_string($_POST['sticky']);
+    $sql = "UPDATE blogs SET sticky = '".$sticky."' WHERE id = ".$blog->getId();
+    $db->query($sql);
+    pingNode('newpost');
+    $blog = new Blog('varsity');
+}
+
 ?>
 <!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
@@ -163,6 +172,23 @@ if(isset($_POST['update-match']) && isloggedin()) {
                     </form>
                 </div>
                 
+                <div class="sticky">
+                    <form id="stickyform" class="form-horizontal" method="post" action="">
+                        <fieldset>
+                            <legend>Change Sticky</legend>
+                            <div class="control-group">
+                                <label class="control-label" for="type">Sticky</label>
+                                <div class="controls">
+                                    <textarea class="input-xlarge" id="sticky" name="sticky" rows="4"><?php echo $blog->getSticky(); ?> </textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary" id="update-sticky" name"update-sticky">Submit</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
                 <!-- Matches -->
                 <div class="row matches">
                     <legend class="span12">Matches</legend>

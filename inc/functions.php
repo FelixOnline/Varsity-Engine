@@ -110,3 +110,21 @@
         $result = curl_exec($ch);
         curl_close($ch);
     }
+
+    function pingNode($type) {
+        // post to nodejs
+        $url = NODE_URL."/".$type;
+        $data = array(
+            'api' => API_KEY,
+            $type => 1
+        );
+
+        $data_string = http_build_query($data);
+
+        $ch = curl_init($url.'?'.$data_string);
+
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+
+        $result = curl_exec($ch);
+        curl_close($ch);
+    }

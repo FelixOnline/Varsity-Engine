@@ -7,6 +7,7 @@
  *      name:       - name of blog
  *      slug:       - url slug of page
  *      controller: - name of controller used to handle blog
+ *      sticky:     -
  */
 class Blog extends BaseModel {
     protected $db;
@@ -20,7 +21,8 @@ class Blog extends BaseModel {
                         `id`,
                         `name`,
                         `slug`,
-                        `controller`
+                        `controller`,
+                        `sticky`
                     FROM `blogs`
                     WHERE slug='".$slug."'";
             parent::__construct($this->db->get_row($sql), 'Blog', $slug);
