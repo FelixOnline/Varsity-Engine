@@ -26,8 +26,6 @@
                 break;
         }
 
-        echo serialize($meta);
-
         // insert into database
         $sql = "INSERT INTO `blog_post`
                 (
@@ -49,7 +47,6 @@
                 )";
 
         $db->query($sql);
-        $db->debug();
 
         // post to nodejs
         $url = NODE_URL."/newpost";
