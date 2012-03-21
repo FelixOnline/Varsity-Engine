@@ -18,11 +18,15 @@
         switch($type) {
             case 'twitter':
                 $meta['tweetcontent'] = json_decode(getTweet($meta['tweetid']), true);
+                /*
                 foreach($meta['tweetcontent'] as $key => $value) {
-                    $meta['tweetcontent'][$key] = mysql_real_escape_string($value);
+                    $meta['tweetcontent'][$key] = $db->escape($value);
                 }
+                 */
                 break;
         }
+
+        echo serialize($meta);
 
         // insert into database
         $sql = "INSERT INTO `blog_post`
@@ -41,10 +45,11 @@
                     NOW(),
                     '".$author."',
                     '".$type."',
-                    '".json_encode($meta)."'
+                    '".$db->escape(serialize($meta))."'
                 )";
 
         $db->query($sql);
+        $db->debug();
 
         // post to nodejs
         $url = NODE_URL."/newpost";
