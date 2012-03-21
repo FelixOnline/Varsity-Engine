@@ -154,6 +154,7 @@ if(isset($_POST['sticky']) && isloggedin()) {
                                         <option value="">Normal</option>
                                         <option value="twitter">Twitter</option>
                                         <option value="picture">Picture</option>
+                                        <option value="quote">Quote</option>
                                     </select>
                                 </div>
                             </div>

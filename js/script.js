@@ -16,6 +16,7 @@ $(function() {
         types: {
             twitter: '<div class="control-group"><label class="control-label" for="tweetid">Tweet URL</label><div class="controls"><input type="text" name="tweetid" id="tweetid" class="input-large"/></div></div>',
             picture: '<div class="control-group"><label class="control-label" for="picurl">Picture URL</label><div class="controls"><input type="text" name="picurl" id="picurl" class="input-large"/></div></div>',
+            quote: '<div class="control-group"><label class="control-label" for="quote">Quote</label><div class="controls"><textarea id="quote" name="quote"></textarea></div></div>'
         },
         metacont: $('#meta'),
         addMeta: function(option) {
