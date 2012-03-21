@@ -10,6 +10,7 @@
  *      author:     - uname of post author
  *      type:       - type of post [optional]
  *      meta:       - JSON encoded array of post meta [optional]
+ *      visible:    -
  */
 class BlogPost extends BaseModel {
     protected $db;
@@ -26,7 +27,8 @@ class BlogPost extends BaseModel {
                         UNIX_TIMESTAMP(timestamp) as timestamp,
                         `author`,
                         `type`,
-                        `meta`
+                        `meta`,
+                        `visible`
                     FROM `blog_post`
                     WHERE id='".$id."'";
             parent::__construct($this->db->get_row($sql), 'BlogPost', $slug);

@@ -80,6 +80,12 @@ if(isset($_POST['sticky']) && isloggedin()) {
     $blog = new Blog('varsity');
 }
 
+if(isset($_POST['post-id']) && isloggedin()) {
+    $sql = "UPDATE `blog_post` SET visible = 0 WHERE id = ".$_POST['post-id'];
+    $db->query($sql);
+    pingNode('reset');
+}
+
 ?>
 <!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
@@ -236,28 +242,31 @@ if(isset($_POST['sticky']) && isloggedin()) {
                     </form>
                     <?php } ?>
                 </div>
-                <!--
                 <div class="feed">
                     <h3>Feed</h3>
                     <?php
-                        //foreach($blog->getPosts() as $key => $post) { ?>
+                        foreach($blog->getPosts() as $key => $post) { 
+                            if($post->getVisible() == 1) {
+                        ?>
+                        <form class="postform" method="post" action="">
                         <div class="post">
                             <div class="row">
                                 <div class="time span1">
-                                    <?php //echo date('H:i', $post->getTimestamp()); ?>
+                                    <?php echo date('H:i', $post->getTimestamp()); ?>
                                 </div>
                                 <div class="content span4">
-                                    <?php 
-                                        //$meta = json_decode($post->getMeta()); 
-                                        //echo $meta->tweetcontent->html;
-                                    ?>
-                                    <?php //echo $post->getContent(); ?>
+                                    <i><b><?php echo $post->getType(); ?></b></i>
+                                    <?php echo $post->getContent(); ?>
+                                </div>
+                                <div class="span1">
+                                    <input type="hidden" name="post-id" value="<?php echo $post->getId(); ?>" id="post-id"/>
+                                    <input type="submit" name="delete-post" id="delete-post" class="btn btn-danger" value="Delete"/>
                                 </div>
                             </div>
                         </div>
-                    <?php //} ?>
+                        </form>
+                    <?php } } ?>
                 </div>
-                -->
             <?php } ?>
         </div>
         <footer>
