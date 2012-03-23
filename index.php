@@ -36,7 +36,7 @@ if(isset($_POST['new-post']) && isloggedin()) {
             case 'new-post':
                 break;
             default:
-                $meta[$key] = mysql_real_escape_string($value);
+                $meta[$key] = $value;
                 break;
         }
     }
