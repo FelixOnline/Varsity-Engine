@@ -9,7 +9,7 @@ require_once('core/blogPost.class.php');
 require_once('core/match.class.php');
 
 require_once('inc/functions.php');
-session_name("felix_varsity");
+session_name("felix_tedx");
 session_start();
 
 if (array_key_exists('login', $_POST)) {
@@ -17,12 +17,12 @@ if (array_key_exists('login', $_POST)) {
     if (!login($_POST['uname'], $_POST['pass'])) { ?>
         <div class="alert alert-error">Sorry, your account details were not accepted. Please try again.</div>
     <?php } else {
-        $_SESSION['felix_varsity']['uname'] = strtolower($_POST['uname']);
+        $_SESSION['felix_tedx']['uname'] = strtolower($_POST['uname']);
         // Add redirect here if we need to
     }
 }
 
-$blog = new Blog('varsity');
+$blog = new Blog('tedx');
 
 if(isset($_POST['new-post']) && isloggedin()) {
     foreach($_POST as $key => $value) {
@@ -40,36 +40,9 @@ if(isset($_POST['new-post']) && isloggedin()) {
                 break;
         }
     }
-    $author = $_SESSION['felix_varsity']['uname'];
+    $author = $_SESSION['felix_tedx']['uname'];
 
     publishpost($type, $content, $author, $meta, $blog);
-}
-
-if(isset($_POST['update-match']) && isloggedin()) {
-    if($_POST['finished'] == 'on') {
-        $finished = 1;
-    } else {
-        $finished = 0;
-    }
-    $score1 = mysql_real_escape_string($_POST['score1']);
-    $score2 = mysql_real_escape_string($_POST['score2']);
-    $match = mysql_real_escape_string($_POST['match']);
-    $author = $_SESSION['felix_varsity']['uname'];
-
-    $meta = array(
-        'score1' => $score1,
-        'score2' => $score2,
-        'match' => $match
-    );
-
-    if($finished) { // post saying match has finished
-        $type = 'matchfinish';
-    } else { // post saying score has changed
-        $type = 'matchupdate';
-    }
-
-    updateMatch($match, $meta, $finished);
-    publishpost($type, '', $author, $meta, $blog);
 }
 
 if(isset($_POST['sticky']) && isloggedin()) {
@@ -77,7 +50,7 @@ if(isset($_POST['sticky']) && isloggedin()) {
     $sql = "UPDATE blogs SET sticky = '".$sticky."' WHERE id = ".$blog->getId();
     $db->query($sql);
     pingNode('newpost');
-    $blog = new Blog('varsity');
+    $blog = new Blog('tedx');
 }
 
 if(isset($_POST['post-id']) && isloggedin()) {
@@ -101,7 +74,7 @@ if(isset($_POST['post-id']) && isloggedin()) {
         More info: h5bp.com/i/378 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>Varsity</title>
+    <title>TEDx</title>
     <meta name="description" content="">
 
     <!-- Mobile viewport optimized: h5bp.com/viewport -->
@@ -121,7 +94,7 @@ if(isset($_POST['post-id']) && isloggedin()) {
         <header>
             <div class="row">
                 <div class="span12">
-                    <h1>Varsity</h1>
+                    <h1>TEDx</h1>
                 </div>
             </div>
         </header>
@@ -147,7 +120,7 @@ if(isset($_POST['post-id']) && isloggedin()) {
                 </form>
             <?php } else { ?>
                 <div class="info">
-                    <p>Logged in as <?php echo $_SESSION['felix_varsity']['uname']; ?></p>
+                    <p>Logged in as <?php echo $_SESSION['felix_tedx']['uname']; ?></p>
                 </div>
                 <div class="add-new">
                     <form id="newpostform" class="form-horizontal" method="post" action=""> 
@@ -195,52 +168,6 @@ if(isset($_POST['post-id']) && isloggedin()) {
                             </div>
                         </fieldset>
                     </form>
-                </div>
-                <!-- Matches -->
-                <div class="row matches">
-                    <legend class="span12">Matches</legend>
-                    <?php
-                        $sql = "SELECT id FROM varsity ORDER BY start ASC";
-                        $matches = $db->get_results($sql);
-                        foreach($matches as $key => $object) {
-                            $match = new Match($object->id); ?>
-                    <form id="match" class="form-horizontal span12" method="post" action="">
-                        <fieldset>
-                                <div class="match">
-                                    <div class="row">
-                                        <div class="span3">
-                                            <?php echo $match->getTeam1(); ?>
-                                        </div> 
-                                        <div class="span3">
-                                            <input type="text" class="input-mini" id="score1" name="score1" value="<?php echo $match->getScore1(); ?>"/>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="span3">
-                                            <?php echo $match->getTeam2(); ?>
-                                        </div> 
-                                        <div class="span3">
-                                            <input type="text" class="input-mini" id="score2" name="score2" value="<?php echo $match->getScore2(); ?>"/>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="span1 time">
-                                            <?php echo date('H:i', $match->getStart()); ?>
-                                        </div>
-                                        <div class="span2">
-                                            <label class="checkbox">
-                                                <input type="checkbox" name="finished" id="finished" <?php if($match->getFinished()) echo 'checked="yes"'; ?>> Finished
-                                            </label>
-                                        </div>
-                                        <div class="span3">
-                                            <button id="update-match" name="update-match" class="btn btn-primary">Update</button>
-                                        </div>
-                                    </div>
-                                    <input type="hidden" name="match" value="<?php echo $match->getId(); ?>"/>
-                                </div>
-                        </fieldset>
-                    </form>
-                    <?php } ?>
                 </div>
                 <div class="feed">
                     <h3>Feed</h3>

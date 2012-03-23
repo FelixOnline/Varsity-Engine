@@ -1,7 +1,7 @@
 <?php
 	// Check to see if we have authenticated
 	function isloggedin() {
-		return (array_key_exists('felix_varsity', $_SESSION) && array_key_exists('uname', $_SESSION['felix_varsity']));
+		return (array_key_exists('felix_tedx', $_SESSION) && array_key_exists('uname', $_SESSION['felix_tedx']));
 	}
 	
 	// Log in
@@ -64,22 +64,6 @@
         $result = curl_exec($ch);
         curl_close($ch);
         return $result;
-    }
-
-    function updateMatch($match, $meta, $finished) {
-        global $db;
-
-        $sql = "UPDATE `varsity`
-                SET 
-                    score1 = ".$meta['score1'].",
-                    score2 = ".$meta['score2'].",
-                    finished = ".$finished."
-                WHERE
-                    id = ".$match."";
-        $db->query($sql);
-        
-        // post to nodejs
-        pingNode('matchupdate');
     }
 
     function pingNode($type) {
