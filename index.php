@@ -43,6 +43,7 @@ if(isset($_POST['new-post']) && isloggedin()) {
     $author = $_SESSION['felix_tedx']['uname'];
 
     publishpost($type, $content, $author, $meta, $blog);
+    header('Location: '.curPageURL());
 }
 
 if(isset($_POST['sticky']) && isloggedin()) {
@@ -50,13 +51,14 @@ if(isset($_POST['sticky']) && isloggedin()) {
     $sql = "UPDATE blogs SET sticky = '".$sticky."' WHERE id = ".$blog->getId();
     $db->query($sql);
     pingNode('newpost');
-    $blog = new Blog('tedx');
+    header('Location: '.curPageURL());
 }
 
 if(isset($_POST['post-id']) && isloggedin()) {
     $sql = "UPDATE `blog_post` SET visible = 0 WHERE id = ".$_POST['post-id'];
     $db->query($sql);
     pingNode('reset');
+    $blog = new Blog('tedx');
 }
 
 ?>
