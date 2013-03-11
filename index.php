@@ -169,20 +169,25 @@ if(isset($_POST['post-id']) && isloggedin()) {
                             <div class="control-group">
                                 <label class="control-label" for="content">Content</label>
                                 <div class="controls">
-                                    <div id="content-toolbar" style="display: none;">
-                                        <div class="btn-group">
-                                            <a class="btn" data-wysihtml5-command="bold">Bold</a>
-                                            <a class="btn" data-wysihtml5-command="italic">Italic</a>
-                                        </div>
-
-                                        <a class="btn" data-wysihtml5-command="createLink">Insert link</a>
-                                        <div data-wysihtml5-dialog="createLink" style="display: none;">
-                                            <label>
-                                                Link:
-                                                <input data-wysihtml5-dialog-field="href" value="http://" class="text">
-                                            </label>
-                                            <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
-                                        </div>
+                                    <div class="toolbar" id="content-toolbar" style="display: none;">
+                                        <ul class="clearfix">
+                                            <li>
+                                                <div class="btn-group">
+                                                    <a class="btn" style="font-weight: bold" data-wysihtml5-command="bold">Bold</a>
+                                                    <a class="btn" style="font-style: italic" data-wysihtml5-command="italic">Italic</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a class="btn" data-wysihtml5-command="createLink">Insert link</a>
+                                                <div data-wysihtml5-dialog="createLink" style="display: none;">
+                                                    <label>
+                                                        Link:
+                                                        <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+                                                    </label>
+                                                    <a class="btn" data-wysihtml5-dialog-action="save">OK</a> <a class="btn" data-wysihtml5-dialog-action="cancel">Cancel</a>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                     <textarea class="input-xlarge" id="content" name="content" rows="4"></textarea>
                                 </div>
@@ -201,10 +206,30 @@ if(isset($_POST['post-id']) && isloggedin()) {
                             <div class="control-group">
                                 <label class="control-label" for="type">Sticky</label>
                                 <div class="controls">
+                                    <div class="toolbar" id="sticky-toolbar" style="display: none;">
+                                        <ul class="clearfix">
+                                            <li>
+                                                <div class="btn-group">
+                                                    <a class="btn" style="font-weight: bold" data-wysihtml5-command="bold">Bold</a>
+                                                    <a class="btn" style="font-style: italic" data-wysihtml5-command="italic">Italic</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a class="btn" data-wysihtml5-command="createLink">Insert link</a>
+                                                <div data-wysihtml5-dialog="createLink" style="display: none;">
+                                                    <label>
+                                                        Link:
+                                                        <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+                                                    </label>
+                                                    <a class="btn" data-wysihtml5-dialog-action="save">OK</a> <a class="btn" data-wysihtml5-dialog-action="cancel">Cancel</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
                                     <textarea class="input-xlarge" id="sticky" name="sticky" rows="4"><?php echo $blog->getSticky(); ?> </textarea>
                                 </div>
                             </div>
-                            
+
                             <div class="form-actions">
                                 <button type="submit" class="btn btn-primary" id="update-sticky" name"update-sticky">Submit</button>
                             </div>

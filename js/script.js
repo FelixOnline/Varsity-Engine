@@ -17,6 +17,11 @@ $(function() {
         parserRules:  wysihtml5ParserRules // defined in parser rules set 
     });
 
+    var sticky = new wysihtml5.Editor("sticky", {
+        toolbar:      "sticky-toolbar", // id of toolbar element
+        parserRules:  wysihtml5ParserRules // defined in parser rules set 
+    });
+
     var meta = {
         types: {
             twitter: '<div class="control-group"><label class="control-label" for="tweetid">Tweet URL</label><div class="controls"><input type="text" name="tweetid" id="tweetid" class="input-large"/></div></div>',
