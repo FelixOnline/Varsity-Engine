@@ -87,8 +87,7 @@ if(isset($_POST['post-id']) && isloggedin()) {
 }
 
 ?>
-<!doctype html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!DOCTYPE html>
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
@@ -109,8 +108,8 @@ if(isset($_POST['post-id']) && isloggedin()) {
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
-    <link rel="stylesheet/less" href="css/bootstrap.less">
-    <link rel="stylesheet/less" href="css/responsive.less">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.css">
     <link rel="stylesheet/less" href="css/style.less">
     <script src="js/libs/less-1.3.0.min.js"></script>
 
@@ -146,106 +145,139 @@ if(isset($_POST['post-id']) && isloggedin()) {
                     </fieldset>
                 </form>
             <?php } else { ?>
-                <div class="info">
-                    <p>Logged in as <?php echo $_SESSION['felix_varsity']['uname']; ?></p>
+                <div class="row">
+                    <div class="info span12">
+                        <p>Logged in as <?php echo $_SESSION['felix_varsity']['uname']; ?></p>
+                    </div>
                 </div>
-                <div class="add-new">
-                    <form id="newpostform" class="form-horizontal" method="post" action=""> 
-                        <fieldset>
-                            <legend>Add new post</legend>
-                            <div class="control-group">
-                                <label class="control-label" for="type">Type</label>
-                                <div class="controls">
-                                    <select id="type" name="type">
-                                        <option value="">Normal</option>
-                                        <option value="twitter">Twitter</option>
-                                        <option value="picture">Picture</option>
-                                        <option value="quote">Quote</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div id="meta"></div>
-                            <div class="control-group">
-                                <label class="control-label" for="content">Content</label>
-                                <div class="controls">
-                                    <div class="toolbar" id="content-toolbar" style="display: none;">
-                                        <ul class="clearfix">
-                                            <li>
-                                                <div class="btn-group">
-                                                    <a class="btn" style="font-weight: bold" data-wysihtml5-command="bold">Bold</a>
-                                                    <a class="btn" style="font-style: italic" data-wysihtml5-command="italic">Italic</a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a class="btn" data-wysihtml5-command="createLink">Insert link</a>
-                                                <div data-wysihtml5-dialog="createLink" style="display: none;">
-                                                    <label>
-                                                        Link:
-                                                        <input data-wysihtml5-dialog-field="href" value="http://" class="text">
-                                                    </label>
-                                                    <a class="btn" data-wysihtml5-dialog-action="save">OK</a> <a class="btn" data-wysihtml5-dialog-action="cancel">Cancel</a>
-                                                </div>
-                                            </li>
-                                        </ul>
+                <div class="row">
+                    <div class="add-new span12">
+                        <form id="newpostform" class="form-horizontal" method="post" action=""> 
+                            <fieldset>
+                                <legend>Add new post</legend>
+                                <div class="control-group">
+                                    <label class="control-label" for="type">Type</label>
+                                    <div class="controls">
+                                        <select id="type" name="type">
+                                            <option value="">Normal</option>
+                                            <option value="twitter">Twitter</option>
+                                            <option value="picture">Picture</option>
+                                            <option value="quote">Quote</option>
+                                        </select>
                                     </div>
-                                    <textarea class="input-xlarge" id="content" name="content" rows="4"></textarea>
                                 </div>
-                            </div>
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-primary" id="new-post" name="new-post">Submit</button>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
 
-                <div class="sticky">
-                    <form id="stickyform" class="form-horizontal" method="post" action="">
-                        <fieldset>
-                            <legend>Change Sticky</legend>
-                            <div class="control-group">
-                                <label class="control-label" for="type">Sticky</label>
-                                <div class="controls">
-                                    <div class="toolbar" id="sticky-toolbar" style="display: none;">
-                                        <ul class="clearfix">
-                                            <li>
-                                                <div class="btn-group">
-                                                    <a class="btn" style="font-weight: bold" data-wysihtml5-command="bold">Bold</a>
-                                                    <a class="btn" style="font-style: italic" data-wysihtml5-command="italic">Italic</a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <a class="btn" data-wysihtml5-command="createLink">Insert link</a>
-                                                <div data-wysihtml5-dialog="createLink" style="display: none;">
-                                                    <label>
-                                                        Link:
-                                                        <input data-wysihtml5-dialog-field="href" value="http://" class="text">
-                                                    </label>
-                                                    <a class="btn" data-wysihtml5-dialog-action="save">OK</a> <a class="btn" data-wysihtml5-dialog-action="cancel">Cancel</a>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                <div id="meta"></div>
+                                <div class="control-group">
+                                    <label class="control-label" for="content">Content</label>
+                                    <div class="controls">
+                                        <div class="toolbar" id="content-toolbar" style="display: none;">
+                                            <ul class="clearfix">
+                                                <li>
+                                                    <div class="btn-group">
+                                                        <a class="btn" style="font-weight: bold" data-wysihtml5-command="bold">Bold</a>
+                                                        <a class="btn" style="font-style: italic" data-wysihtml5-command="italic">Italic</a>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a class="btn" data-wysihtml5-command="createLink">Insert link</a>
+                                                    <div data-wysihtml5-dialog="createLink" style="display: none;">
+                                                        <label>
+                                                            Link:
+                                                            <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+                                                        </label>
+                                                        <a class="btn" data-wysihtml5-dialog-action="save">OK</a> <a class="btn" data-wysihtml5-dialog-action="cancel">Cancel</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <textarea class="input-xlarge span6" id="content" name="content" rows="15"></textarea>
                                     </div>
-                                    <textarea class="input-xlarge" id="sticky" name="sticky" rows="4"><?php echo $blog->getSticky(); ?> </textarea>
                                 </div>
-                            </div>
-
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-primary" id="update-sticky" name"update-sticky">Submit</button>
-                            </div>
-                        </fieldset>
-                    </form>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary" id="new-post" name="new-post">Submit</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div class="sticky span12">
+                        <form id="stickyform" class="form-horizontal" method="post" action="">
+                            <fieldset>
+                                <legend>Change Sticky</legend>
+                                <div class="control-group">
+                                    <label class="control-label" for="type">Sticky</label>
+                                    <div class="controls">
+                                        <div class="toolbar" id="sticky-toolbar" style="display: none;">
+                                            <ul class="clearfix">
+                                                <li>
+                                                    <div class="btn-group">
+                                                        <a class="btn" style="font-weight: bold" data-wysihtml5-command="bold">Bold</a>
+                                                        <a class="btn" style="font-style: italic" data-wysihtml5-command="italic">Italic</a>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a class="btn" data-wysihtml5-command="createLink">Insert link</a>
+                                                    <div data-wysihtml5-dialog="createLink" style="display: none;">
+                                                        <label>
+                                                            Link:
+                                                            <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+                                                        </label>
+                                                        <a class="btn" data-wysihtml5-dialog-action="save">OK</a> <a class="btn" data-wysihtml5-dialog-action="cancel">Cancel</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <textarea class="input-xlarge span6" id="sticky" name="sticky" rows="8"><?php echo $blog->getSticky(); ?> </textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary" id="update-sticky" name"update-sticky">Submit</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+
                 <!-- Matches -->
                 <div class="row matches">
-                    <legend class="span12">Matches</legend>
-                    <?php
-                        $sql = "SELECT id FROM varsity ORDER BY start ASC";
-                        $matches = $db->get_results($sql);
-                        foreach($matches as $key => $object) {
-                            $match = new Match($object->id); ?>
-                    <form id="match" class="form-horizontal span12" method="post" action="">
-                        <fieldset>
+                    <div class="feed span6">
+                        <h3>Feed</h3>
+                        <?php
+                            foreach($blog->getPosts() as $key => $post) { 
+                                if($post->getVisible() == 1) {
+                            ?>
+                            <form class="postform" method="post" action="">
+                            <div class="post">
+                                <div class="row">
+                                    <div class="time span1">
+                                        <?php echo date('H:i', $post->getTimestamp()); ?>
+                                    </div>
+                                    <div class="content span4">
+                                        <i><b><?php echo $post->getType(); ?></b></i>
+                                        <?php echo $post->getContent(); ?>
+                                    </div>
+                                    <div class="span1">
+                                        <input type="hidden" name="post-id" value="<?php echo $post->getId(); ?>" id="post-id"/>
+                                        <input type="submit" name="delete-post" id="delete-post" class="btn btn-danger" value="Delete"/>
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                        <?php } } ?>
+                    </div>
+                    <div class="span6">
+                        <legend>Matches</legend>
+                        <?php
+                            $sql = "SELECT id FROM varsity ORDER BY start ASC";
+                            $matches = $db->get_results($sql);
+                            foreach($matches as $key => $object) {
+                                $match = new Match($object->id); ?>
+                        <form id="match" class="form-horizontal span6" method="post" action="">
+                            <fieldset>
                                 <div class="match">
                                     <div class="row">
                                         <div class="span3">
@@ -278,34 +310,10 @@ if(isset($_POST['post-id']) && isloggedin()) {
                                     </div>
                                     <input type="hidden" name="match" value="<?php echo $match->getId(); ?>"/>
                                 </div>
-                        </fieldset>
-                    </form>
-                    <?php } ?>
-                </div>
-                <div class="feed">
-                    <h3>Feed</h3>
-                    <?php
-                        foreach($blog->getPosts() as $key => $post) { 
-                            if($post->getVisible() == 1) {
-                        ?>
-                        <form class="postform" method="post" action="">
-                        <div class="post">
-                            <div class="row">
-                                <div class="time span1">
-                                    <?php echo date('H:i', $post->getTimestamp()); ?>
-                                </div>
-                                <div class="content span4">
-                                    <i><b><?php echo $post->getType(); ?></b></i>
-                                    <?php echo $post->getContent(); ?>
-                                </div>
-                                <div class="span1">
-                                    <input type="hidden" name="post-id" value="<?php echo $post->getId(); ?>" id="post-id"/>
-                                    <input type="submit" name="delete-post" id="delete-post" class="btn btn-danger" value="Delete"/>
-                                </div>
-                            </div>
-                        </div>
+                            </fieldset>
                         </form>
-                    <?php } } ?>
+                        <?php } ?>
+                    </div>
                 </div>
             <?php } ?>
         </div>
