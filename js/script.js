@@ -2,14 +2,19 @@
 
 */
 $(function() {
-    tinyMCE.init({
-        // General options
-        mode : "textareas",
-        theme : "simple",
-        entity_encoding : "raw",
+    //tinyMCE.init({
+        //// General options
+        //mode : "textareas",
+        //theme : "simple",
+        //entity_encoding : "raw",
 
-        // Example content CSS (should be your site CSS)
-        content_css : "css/style.css"
+        //// Example content CSS (should be your site CSS)
+        //content_css : "css/style.css"
+    //});
+
+    var content = new wysihtml5.Editor("content", {
+        toolbar:      "content-toolbar", // id of toolbar element
+        parserRules:  wysihtml5ParserRules // defined in parser rules set 
     });
 
     var meta = {

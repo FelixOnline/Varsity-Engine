@@ -22,7 +22,7 @@ if (array_key_exists('login', $_POST)) {
     }
 }
 
-$blog = new Blog('varsity');
+$blog = new Blog('varsity-2013');
 
 if(isset($_POST['new-post']) && isloggedin()) {
     foreach($_POST as $key => $value) {
@@ -164,11 +164,26 @@ if(isset($_POST['post-id']) && isloggedin()) {
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div id="meta"></div>
                             <div class="control-group">
                                 <label class="control-label" for="content">Content</label>
                                 <div class="controls">
+                                    <div id="content-toolbar" style="display: none;">
+                                        <div class="btn-group">
+                                            <a class="btn" data-wysihtml5-command="bold">Bold</a>
+                                            <a class="btn" data-wysihtml5-command="italic">Italic</a>
+                                        </div>
+
+                                        <a class="btn" data-wysihtml5-command="createLink">Insert link</a>
+                                        <div data-wysihtml5-dialog="createLink" style="display: none;">
+                                            <label>
+                                                Link:
+                                                <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+                                            </label>
+                                            <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+                                        </div>
+                                    </div>
                                     <textarea class="input-xlarge" id="content" name="content" rows="4"></textarea>
                                 </div>
                             </div>
@@ -178,7 +193,7 @@ if(isset($_POST['post-id']) && isloggedin()) {
                         </fieldset>
                     </form>
                 </div>
-                
+
                 <div class="sticky">
                     <form id="stickyform" class="form-horizontal" method="post" action="">
                         <fieldset>
@@ -281,7 +296,12 @@ if(isset($_POST['post-id']) && isloggedin()) {
     <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
 
     <!-- Load TinyMCE -->
-    <script type="text/javascript" src="js/tiny_mce/tiny_mce.js"></script>
+    <!--<script type="text/javascript" src="js/tiny_mce/tiny_mce.js"></script>-->
+
+    <!-- Load wysihtml5 -->
+    <script type="text/javascript" src="js/advanced.js"></script>
+    <script type="text/javascript" src="js/wysihtml5-0.3.0.min.js"></script>
+
     <!-- /TinyMCE -->
     <!-- scripts concatenated and minified via build script -->
     <script src="js/script.js"></script>

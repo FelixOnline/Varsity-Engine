@@ -1,16 +1,16 @@
 <?php
-	// Check to see if we have authenticated
-	function isloggedin() {
-		return (array_key_exists('felix_varsity', $_SESSION) && array_key_exists('uname', $_SESSION['felix_varsity']));
-	}
-	
-	// Log in
-	function login($uname, $pass) {
-		if (LOCAL) {
-			return true;
-		}
-		return pam_auth($uname, $pass);
-	}
+    // Check to see if we have authenticated
+    function isloggedin() {
+        return (array_key_exists('felix_varsity', $_SESSION) && array_key_exists('uname', $_SESSION['felix_varsity']));
+    }
+
+    // Log in
+    function login($uname, $pass) {
+        if (LOCAL) {
+            return true;
+        }
+        return pam_auth($uname, $pass);
+    }
 
     function publishpost($type, $content, $author, $meta, $blog) {
         global $db;
