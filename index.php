@@ -19,6 +19,7 @@ if (array_key_exists('login', $_POST)) {
     <?php } else {
         $_SESSION['felix_varsity']['uname'] = strtolower($_POST['uname']);
         // Add redirect here if we need to
+        header('Location: '.$_SERVER['PHP_SELF']);
     }
 }
 
@@ -43,6 +44,8 @@ if(isset($_POST['new-post']) && isloggedin()) {
     $author = $_SESSION['felix_varsity']['uname'];
 
     publishpost($type, $content, $author, $meta, $blog);
+
+    header('Location: '.$_SERVER['PHP_SELF']);
 }
 
 if(isset($_POST['update-match']) && isloggedin()) {
@@ -70,6 +73,7 @@ if(isset($_POST['update-match']) && isloggedin()) {
 
     updateMatch($match, $meta, $finished);
     publishpost($type, '', $author, $meta, $blog);
+    header('Location: '.$_SERVER['PHP_SELF']);
 }
 
 if(isset($_POST['sticky']) && isloggedin()) {
@@ -78,12 +82,14 @@ if(isset($_POST['sticky']) && isloggedin()) {
     $db->query($sql);
     pingNode('newpost');
     $blog = new Blog('varsity');
+    header('Location: '.$_SERVER['PHP_SELF']);
 }
 
 if(isset($_POST['post-id']) && isloggedin()) {
     $sql = "UPDATE `blog_post` SET visible = 0 WHERE id = ".$_POST['post-id'];
     $db->query($sql);
     pingNode('reset');
+    header('Location: '.$_SERVER['PHP_SELF']);
 }
 
 ?>
