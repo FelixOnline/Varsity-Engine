@@ -18,11 +18,6 @@
         switch($type) {
             case 'twitter':
                 $meta['tweetcontent'] = json_decode(getTweet($meta['tweetid']), true);
-                /*
-                foreach($meta['tweetcontent'] as $key => $value) {
-                    $meta['tweetcontent'][$key] = $db->escape($value);
-                }
-                 */
                 break;
         }
 
@@ -49,20 +44,7 @@
         $db->query($sql);
 
         // post to nodejs
-        $url = NODE_URL."/newpost";
-        $data = array(
-            'api' => API_KEY,
-            'new-post' => 1
-        );
-
-        $data_string = http_build_query($data);
-
-        $ch = curl_init($url.'?'.$data_string);
-
-        curl_setopt($ch, CURLOPT_NOBODY, true);
-
-        $result = curl_exec($ch);
-        curl_close($ch);
+        pingNode('newpost');
     }
 
     function getTweet($id) {
@@ -97,20 +79,7 @@
         $db->query($sql);
         
         // post to nodejs
-        $url = NODE_URL."/matchupdate";
-        $data = array(
-            'api' => API_KEY,
-            'matchupdate' => 1
-        );
-
-        $data_string = http_build_query($data);
-
-        $ch = curl_init($url.'?'.$data_string);
-
-        curl_setopt($ch, CURLOPT_NOBODY, true);
-
-        $result = curl_exec($ch);
-        curl_close($ch);
+        pingNode('matchupdate');
     }
 
     function pingNode($type) {
