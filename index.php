@@ -343,7 +343,14 @@ if(isset($_POST['post-id']) && isloggedin()) {
 
     <!-- /TinyMCE -->
     <!-- scripts concatenated and minified via build script -->
+
+	<!-- /Uploadify -->
+    <script type="text/javascript" src="js/jquery.uploadify.v2.1.4.min.js"></script>
+
+    <script type="text/javascript" src="js/swfobject.js"></script>
+
     <script src="js/script.js"></script>
+
     <!-- end scripts -->
 
 </body>
