@@ -23,7 +23,7 @@ if (array_key_exists('login', $_POST)) {
     }
 }
 
-$blog = new Blog('varsity-2013');
+$blog = new Blog('varsity-2015');
 
 if(isset($_POST['new-post']) && isloggedin()) {
     foreach($_POST as $key => $value) {
