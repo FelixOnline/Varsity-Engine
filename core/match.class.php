@@ -30,7 +30,7 @@ class Match extends BaseModel {
                         `finished`
                     FROM `varsity`
                     WHERE id='".$id."'";
-            parent::__construct($this->db->get_row($sql), 'Match', $slug);
+            parent::__construct($this->db->get_row($sql), 'Match', $id);
             return $this;
         } else {
             // initialise new blog post
