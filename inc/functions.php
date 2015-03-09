@@ -9,6 +9,11 @@
         if (LOCAL) {
             return true;
         }
+
+        if($uname != 'felix' && $uname != 'pk1811' && $uname != 'kmw13' && $uname != 'fsport') {
+            return false;
+        }
+
         return pam_auth($uname, $pass);
     }
 
@@ -85,6 +90,7 @@
     function pingNode($type) {
         // post to nodejs
         $url = NODE_URL."/".$type;
+
         $data = array(
             'api' => API_KEY,
             $type => 1
