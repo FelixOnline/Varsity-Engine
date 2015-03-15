@@ -132,7 +132,7 @@ if(isset($_POST['post-id']) && isloggedin()) {
         </header>
         <div role="main">
             <?php if (!isloggedin()) { // not logged in? display login form ?>
-                <form method="post" id="loginForm" class="form-horizontal">
+                <form method="post" id="loginForm" class="form-horizontal" enctype="multipart/form-data">
                     <legend>Please enter your username/password to continue</legend>
                     <fieldset class="control-group">
                         <label class="control-label" for="uname">IC Username:</label>
