@@ -34,7 +34,7 @@
             case 'twitter':
                 $meta['tweetcontent'] = json_decode(getTweet($meta['tweetid']), true);
                 break;
-            case 'image':
+            case 'picture':
                 if(!empty($_FILES)) {
                     $tempFile = $_FILES['Filedata']['tmp_name'];
                     $targetPath = '/media/felix/img/upload/';
