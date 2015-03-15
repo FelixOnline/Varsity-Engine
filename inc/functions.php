@@ -17,6 +17,16 @@
         return pam_auth($uname, $pass);
     }
 
+    function insert_image($name, $title) {
+        global $cid;
+        if (mysql_query("INSERT INTO `image` (title,uri,user) VALUES ($title,'img/upload/'.$filename,'1')",$cid)){
+            $id = mysql_insert_id();
+            return $id;
+        } else {
+            return false;
+        }
+    }
+
     function publishpost($type, $content, $author, $meta, $blog) {
         global $db;
 
@@ -24,6 +34,21 @@
             case 'twitter':
                 $meta['tweetcontent'] = json_decode(getTweet($meta['tweetid']), true);
                 break;
+            case 'image':
+                if(!empty($_FILES)) {
+                    $tempFile = $_FILES['Filedata']['tmp_name'];
+                    $targetPath = '/media/felix/img/upload/';
+
+                    $filename = date('YmdHi').'-varsity-'.$_FILES['Filedata']['name'];
+
+                    $targetFile =  '/website'.str_replace('//','/',$targetPath) . $filename;
+                    $imgid = insert_image($filename,$_POST['user'],$title);
+
+                    move_uploaded_file($tempFile,$targetFile);
+
+                    // Replace any URL given with new URL
+                    $meta['picurl'] = 'http://felixonline.co.uk/img/upload/'.$filename;
+                }
         }
 
         // insert into database
