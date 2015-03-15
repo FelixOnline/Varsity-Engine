@@ -18,8 +18,8 @@
     }
 
     function insert_image($name, $title) {
-        global $cid;
-        if (mysql_query("INSERT INTO `image` (title,uri,user) VALUES ($title,'img/upload/'.$filename,'1')",$cid)){
+        global $db;
+        if ($db->query("INSERT INTO `image` (title,uri,user) VALUES ($title,'img/upload/'.$filename,'1')")) {
             $id = mysql_insert_id();
             return $id;
         } else {
