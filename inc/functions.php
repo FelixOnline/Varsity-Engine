@@ -17,13 +17,12 @@
         return pam_auth($uname, $pass);
     }
 
-    function insert_image($name, $title) {
+    function insert_image($name, $user, $title) {
         global $db;
-        if ($db->query("INSERT INTO `image` (title,uri,user) VALUES ($title,'img/upload/'.$filename,'1')")) {
-            $id = mysql_insert_id();
-            return $id;
+        if ($db->query("INSERT INTO `image` (title,uri,user) VALUES (\"$title\",\"'img/upload/'.$name\",'$user')")) {
+		return true;
         } else {
-            return false;
+		return false;
         }
     }
 
@@ -35,15 +34,14 @@
                 $meta['tweetcontent'] = json_decode(getTweet($meta['tweetid']), true);
                 break;
             case 'picture':
-                if(!empty($_FILES)) {
-                    $tempFile = $_FILES['Filedata']['tmp_name'];
+                if(!empty($_FILES) && $_FILES['file_upload']['name'] != "") {
+                    $tempFile = $_FILES['file_upload']['tmp_name'];
                     $targetPath = '/media/felix/img/upload/';
 
-                    $filename = date('YmdHi').'-varsity-'.$_FILES['Filedata']['name'];
+                    $filename = date('YmdHi').'-varsity-'.$_FILES['file_upload']['name'];
 
                     $targetFile =  '/website'.str_replace('//','/',$targetPath) . $filename;
-                    $imgid = insert_image($filename,$_POST['user'],$title);
-
+                    $imgid = insert_image($filename,$_SESSION['felix_varsity']['uname'],$title);
                     move_uploaded_file($tempFile,$targetFile);
 
                     // Replace any URL given with new URL
