@@ -13,6 +13,6 @@ Varsity matches can be set in the varsity table.
 * Any valid login can use the app - **you must fix this**
 * Twitter support is likely dead due to retirement of API v1
 
-See also
+## See also
 * LiveBlog node app: https://github.com/FelixOnline/LiveBlog
 * Frontend: https://github.com/FelixOnline/Varsity
