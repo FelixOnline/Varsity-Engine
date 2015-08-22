@@ -18,3 +18,4 @@ Varsity matches can be set in the varsity table.
 ## See also
 * LiveBlog node app: https://github.com/FelixOnline/LiveBlog
 * Frontend: https://github.com/FelixOnline/Varsity
+* Version for TEDx blog (no matches) in the TEDx branch (this is really old)
